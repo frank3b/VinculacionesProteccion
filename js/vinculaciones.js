@@ -61,8 +61,6 @@ function validarIngreso(){
 		$.mobile.loading('hide');
 	}
 	
-	
-	
 }
 
 
@@ -117,8 +115,6 @@ function validarListasControl(){
 				vinculado.estado = "PENDIENTE";
 			}
 			
-			
-			
 			colapsarSecciones();
 			$('#datosGenerales').trigger('expand');
 			$('#calificacionInterna').trigger("focus");
@@ -133,24 +129,12 @@ function validarListasControl(){
 
 function vincular(){
 	
-	if(isSegmentado){
-		//$.mobile.loading('show');
-		guardar();
-		setTimeout(function() {
-			agregarMensaje($('#mensajeVinculacion'), 'S', 'La vinculaci\u00F3n se ejecut\u00F3 correctamentemente.');
-			//$.mobile.loading('hide');
-			$('#rolNegocio').val("2").selectmenu('refresh');
-			colapsarSecciones();
-			$('#datosGenerales').trigger('focus');
-		}, 2000);
-		
-	} else {
-		agregarMensaje($('#mensajeVinculacion'), 'W', 'Debe ejecutar primero la operaci\u00F3n Segmentar/Calificar.');
+	guardar();
+	setTimeout(function() {
+		agregarMensaje($('#mensajeVinculacion'), 'S', 'La afiliaci\u00F3n se ejecut\u00F3 correctamentemente.');
 		colapsarSecciones();
 		$('#datosGenerales').trigger('focus');
-	}
-	
-	
+	}, 2000);	
 	
 }
 

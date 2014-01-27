@@ -6,10 +6,10 @@
         id        = "com.proteccion.vinculaciones"
         version   = "1.0.0">
 
-    <name>Afiliaciones</name>
+    <name>Afiliaciones Protección</name>
 
     <description>
-        Afiliaciones Proteccion
+        Afiliaciones Protección
     </description>
 
     <author href="http://www.tcs.com" email="frank.bedoya@tcs.com">
