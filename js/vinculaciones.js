@@ -77,7 +77,9 @@ function salir(){
 }
 
 var isListasControlValidadas = false;
+
 function validarListasControl(){
+	isSaved = false;
 	
 	var tipo_documento = $('#tipoDocumento').val();
 	var numero_documento = $('#numeroDocumento').val();
@@ -131,7 +133,9 @@ function vincular(){
 	
 	guardar();
 	setTimeout(function() {
-		agregarMensaje($('#mensajeVinculacion'), 'S', 'La afiliaci\u00F3n se ejecut\u00F3 correctamentemente.');
+		if(isSaved){
+			agregarMensaje($('#mensajeVinculacion'), 'S', 'La afiliaci\u00F3n se ejecut\u00F3 correctamentemente.');
+		}
 		colapsarSecciones();
 		$('#datosGenerales').trigger('focus');
 	}, 2000);	
@@ -475,6 +479,7 @@ function guardar(){
 			if(isnuevo){
 				Kinvey.DataStore.save('VINCULACIONES', vinculado, {
 				    success: function(response) {
+				    	var isSaved = true;
 				    	vinculado = response;
 				    	vinculado.llaveSAP = response._id;
 				    	$('#llaveCRM').val(vinculado.llaveSAP);
@@ -493,12 +498,13 @@ function guardar(){
 				//alert("VINCULADO MOD... " +  JSON.stringify(vinculado));
 				Kinvey.DataStore.update('VINCULACIONES', vinculado, {
 				    success: function(response) {
+				    	var isSaved = true;
 						agregarMensaje($('#mensajeVinculacion'), 'S', 'La informaci\u00F3n se ha almacenado correctamente.');
 						$.mobile.loading('hide');
 				    },
 			        error: function(error){
+			        	var isSaved = true;
 						console.log(error);
-						alert(error);
 				        agregarMensaje($('#mensajeVinculacion'), 'E', 'No se almaceno correctamente la informaci\u00F3n.');
 				        $.mobile.loading('hide');
 					}
